@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             $table->string('author');
             $table->text('body_comment');
-            $table->boolean('published')->index('published');
+            $table->boolean('published')->default(false)->index('published');
             $table->integer('news_id')->unsigned();
             $table->foreign('news_id')->references('id')->on('news')->onDelete('CASCADE');
 

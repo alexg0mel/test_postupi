@@ -17,9 +17,10 @@ class CreateCategsTable extends Migration
         Schema::create('categs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_categ');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('descr')->nullable();
             NestedSet::columns($table);
+            $table->unique(['parent_id', 'slug']);
 
         });
     }
