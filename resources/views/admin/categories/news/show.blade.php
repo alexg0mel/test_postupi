@@ -21,10 +21,10 @@
             <th>Name</th><td>{{ $news->name_news }}</td>
         </tr>
         <tr>
-            <th>Name</th><td>{{ $news->slug }}</td>
+            <th>SLUG</th><td>{{ $news->slug }}</td>
         </tr>
         <tr>
-            <th>Name</th><td>{{ $news->body_news }}</td>
+            <th>TEXT</th><td>{!! $news->body_news !!} </td>
         </tr>
 
         </tbody>

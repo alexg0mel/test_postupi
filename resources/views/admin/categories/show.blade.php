@@ -48,7 +48,7 @@
                     {{ $news->slug }}
                 </td>
                 <td>
-                    {{ $news->body_news }}
+                    {!! $news->body_news !!}
                 </td>
             </tr>
         @empty

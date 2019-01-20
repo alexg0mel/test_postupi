@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label for="body_news" class="col-form-label">Text</label>
-            <input id="body_news" class="form-control{{ $errors->has('body_news') ? ' is-invalid' : '' }}" name="body_news" value="{{ old('body_news', $news->body_news) }}" required>
+            <textarea id="body_news" class="form-control{{ $errors->has('body_news') ? ' is-invalid' : '' }}" name="body_news"  required> {{ old('body_news', $news->body_news) }} </textarea>
             @if ($errors->has('body_news'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('body_news') }}</strong></span>
             @endif
@@ -40,3 +40,13 @@
     </form>
 @endsection
 
+
+
+@section('script')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        window.onload = function() {
+            CKEDITOR.replace( 'body_news' );
+        };
+    </script>
+@endsection
