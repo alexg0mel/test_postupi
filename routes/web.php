@@ -34,5 +34,6 @@ Route::group([
         Route::post('/last', 'CategoryController@last')->name('last');
         Route::resource('news', 'NewsController')->except('index');
     });
+        Route::get('comments', 'CommentController@index')->name('comments.index');
 
 });

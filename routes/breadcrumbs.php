@@ -77,3 +77,9 @@ Breadcrumbs::register('admin.categories.news.create', function (Crumbs $crumbs, 
     $crumbs->parent('admin.categories.show', $category);
     $crumbs->push('Create', route('admin.categories.news.create', $category));
 });
+
+
+Breadcrumbs::register('admin.comments.index', function (Crumbs $crumbs) {
+    $crumbs->parent('admin.home');
+    $crumbs->push('Comments', route('admin.comments.index'));
+});

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Entity\Comment
@@ -18,8 +19,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\Comment query()
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\Comment unpublished()
+ * @property-read \App\Entity\News $news
  */
 class Comment extends Model
 {
     protected $fillable = ['author', 'body_comment', 'news_id'];
+
+    public function scopeUnpublished(Builder $builder)
+    {
+        return $builder->where(['published'=>false]);
+    }
+
+    public function news()
+    {
+        return $this->belongsTo(News::class,'news_id', 'id');
+    }
+
 }
