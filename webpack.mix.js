@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,5 +12,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.setPublicPath('public/build')
+    .setResourceRoot('build')
+    .js('resources/assets/js/app.js', 'js')
+    .copy('node_modules/font-awesome/fonts', 'public/build/fonts/vendor/font-awesome')
+    .sass('resources/assets/sass/app.scss', 'css')
+    .version();

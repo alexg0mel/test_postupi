@@ -14,10 +14,24 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin',
+    'middleware' => ['auth',],
+], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('categories', 'CategoryController');
+    Route::group(['prefix' => 'categories/{category}', 'as' => 'categories.'], function () {
+        Route::post('/first', 'CategoryController@first')->name('first');
+        Route::post('/up', 'CategoryController@up')->name('up');
+        Route::post('/down', 'CategoryController@down')->name('down');
+        Route::post('/last', 'CategoryController@last')->name('last');
+    });
+
+});

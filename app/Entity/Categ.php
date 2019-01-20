@@ -35,4 +35,5 @@ class Categ extends Model
     {
         return $this->hasMany(News::class, 'categ_id', 'id');
     }
+
 }
