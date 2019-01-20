@@ -30,5 +30,32 @@
         <tbody>
         </tbody>
     </table>
+    <p><a href="{{ route('admin.categories.news.create', $category) }}" class="btn btn-success">Добавить новость</a></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th><th>Slug</th> <th>Body</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @forelse ($category->news as $news)
+            <tr>
+                <td>
+                    <a href="{{ route('admin.categories.news.show', [$category, $news]) }}">{{ $news->name_news }}</a>
+                </td>
+                <td>
+                    {{ $news->slug }}
+                </td>
+                <td>
+                    {{ $news->body_news }}
+                </td>
+            </tr>
+        @empty
+            <tr><td colspan="4">Новостей нет...</td></tr>
+        @endforelse
+
+        </tbody>
+    </table>
 
 @endsection

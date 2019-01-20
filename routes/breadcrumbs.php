@@ -2,6 +2,7 @@
 
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 use App\Entity\Categ;
+use App\Entity\News;
 
 
 Breadcrumbs::register('home', function (Crumbs $crumbs) {
@@ -58,4 +59,21 @@ Breadcrumbs::register('admin.categories.show', function (Crumbs $crumbs, Categ $
 Breadcrumbs::register('admin.categories.edit', function (Crumbs $crumbs, Categ $category) {
     $crumbs->parent('admin.categories.show', $category);
     $crumbs->push('Edit', route('admin.categories.edit', $category));
+});
+
+//News
+
+Breadcrumbs::register('admin.categories.news.show', function (Crumbs $crumbs, Categ $category, News $news) {
+    $crumbs->parent('admin.categories.show', $category);
+    $crumbs->push($news->name_news, route('admin.categories.news.show', [$category, $news]));
+});
+
+Breadcrumbs::register('admin.categories.news.edit', function (Crumbs $crumbs, Categ $category, News $news) {
+    $crumbs->parent('admin.categories.show', $category, $news);
+    $crumbs->push('Edit', route('admin.categories.news.edit', [$category, $news]));
+});
+
+Breadcrumbs::register('admin.categories.news.create', function (Crumbs $crumbs, Categ $category) {
+    $crumbs->parent('admin.categories.show', $category);
+    $crumbs->push('Create', route('admin.categories.news.create', $category));
 });
