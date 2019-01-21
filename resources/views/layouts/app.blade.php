@@ -16,7 +16,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css', 'build') }}" rel="stylesheet">
 </head>
-<body id="app">
+<body>
     <header>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
