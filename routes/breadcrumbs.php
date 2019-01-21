@@ -3,6 +3,7 @@
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 use App\Entity\Categ;
 use App\Entity\News;
+use App\UseCases\Slugs\Slug;
 
 
 Breadcrumbs::register('home', function (Crumbs $crumbs) {
@@ -82,4 +83,12 @@ Breadcrumbs::register('admin.categories.news.create', function (Crumbs $crumbs, 
 Breadcrumbs::register('admin.comments.index', function (Crumbs $crumbs) {
     $crumbs->parent('admin.home');
     $crumbs->push('Comments', route('admin.comments.index'));
+});
+
+Breadcrumbs::register('slug', function (Crumbs $crumbs, string  $slug) {
+    $crumbs->parent('home');
+    $slugService = Slug::getInstance();
+    foreach ($slugService->getSlugPaths() as $slugPath) {
+        $crumbs->push($slugPath->slug, route('slug', $slugPath->path));
+    }
 });

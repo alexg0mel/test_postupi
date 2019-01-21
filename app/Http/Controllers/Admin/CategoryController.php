@@ -26,7 +26,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name_categ' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
+            'slug' => 'required|alpha_dash|max:255',
             'descr' => 'nullable|string|max:255',
             'parent' => 'nullable|integer|exists:categs,id',
         ]);
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name_categ' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
+            'slug' => 'required|alpha_dash|max:255',
             'descr' => 'nullable|string|max:255',
             'parent' => 'nullable|integer|exists:categs,id',
         ]);

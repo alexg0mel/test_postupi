@@ -38,7 +38,7 @@
                 @foreach ($parents as $parent)
                     <option value="{{ $parent->id }}"{{ $parent->id == old('parent') ? ' selected' : '' }}>
                         @for ($i = 0; $i < $parent->depth; $i++) &mdash; @endfor
-                        {{ $parent->name }}
+                        {{ $parent->name_categ }}
                     </option>
                 @endforeach;
             </select>

@@ -19,7 +19,7 @@ class NewsController extends Controller
     {
         $this->validate($request, [
             'name_news' => 'required|string|max:255|unique:news,name_news,,id,categ_id,'.$category->id,
-            'slug' => 'required|string|max:255|unique:news,slug,,id,categ_id,'.$category->id,
+            'slug' => 'required|alpha_dash|max:255|unique:news,slug,,id,categ_id,'.$category->id,
             'body_news' => 'required|string',
         ]);
 
@@ -50,7 +50,7 @@ class NewsController extends Controller
 
         $this->validate($request, [
             'name_news' => 'required|string|max:255|unique:news,name_news,'.$news->id.',id,categ_id,'.$category->id,
-            'slug' => 'required|string|max:255|unique:news,slug,'.$news->id.',id,categ_id,'.$category->id,
+            'slug' => 'required|alpha_dash|max:255|unique:news,slug,'.$news->id.',id,categ_id,'.$category->id,
             'body_news' => 'required|string',
         ]);
 

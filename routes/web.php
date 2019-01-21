@@ -35,5 +35,6 @@ Route::group([
         Route::resource('news', 'NewsController')->except('index');
     });
         Route::get('comments', 'CommentController@index')->name('comments.index');
-
 });
+
+Route::get('{slug?}', 'HomeController@slug')->where('slug','[a-zA-Z0-9а-яА-ЯёЁ/_-]+')->name('slug');
