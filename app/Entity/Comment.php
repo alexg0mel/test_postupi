@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\Comment unpublished()
  * @property-read \App\Entity\News $news
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entity\Comment published()
  */
 class Comment extends Model
 {
@@ -29,6 +30,11 @@ class Comment extends Model
     public function scopeUnpublished(Builder $builder)
     {
         return $builder->where(['published'=>false]);
+    }
+
+    public function scopePublished(Builder $builder)
+    {
+        return $builder->where(['published'=>true]);
     }
 
     public function news()

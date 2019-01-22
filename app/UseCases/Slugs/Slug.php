@@ -54,9 +54,9 @@ class Slug
         return $this->slugPaths;
     }
 
-    public function isNews(): bool
+    public function isNews(): string
     {
-        return $this->slugPaths[count($this->slugPaths)-1]->isNews;
+        return $this->slugPaths[count($this->slugPaths)-1]->isNews ? "true":"false";
     }
 
     public function getId(): int

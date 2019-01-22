@@ -28,5 +28,9 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'],
         Route::get('/get-root-categ', 'CategController@rootCateg');
         Route::get('/get-categs/{currid}', 'CategController@categs');
         Route::get('/get-news/{currid}', 'CategController@news');
+        Route::get('/get-curr-news/{currid}', 'CategController@currNews');
+        Route::get('/get-comments/{parentid}', 'CommentController@comments');
+        Route::post('/comment/{parentid}', 'CommentController@newComment');
+
 
     });

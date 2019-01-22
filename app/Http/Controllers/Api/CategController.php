@@ -28,6 +28,10 @@ class CategController extends Controller
         return $this->categoryService->getListNewsWithCountComments($currid);
     }
 
+    public function currNews($currid)
+    {
+        return $this->categoryService->getCurrNews($currid);
+    }
 
     public function __construct(CategoryService $categoryService)
     {

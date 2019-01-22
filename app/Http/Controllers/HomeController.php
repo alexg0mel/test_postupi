@@ -27,6 +27,10 @@ class HomeController extends Controller
         if (!$slugService->getFoundPath())
             throw new NotFoundHttpException();
 
-        return view('slug', ['curr_id' => $slugService->getId(), 'slug' => $slug]);
+        return view('slug', [
+            'curr_id' => $slugService->getId(),
+            'slug' => $slug,
+            'is_news' =>$slugService->isNews(),
+        ]);
     }
 }
