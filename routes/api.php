@@ -21,8 +21,10 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'],
             Route::get('/user', function (Request $request) {
                 return $request->user();
             });
-
             Route::post('/comment/{comment}/publish', 'CommentController@publish');
             Route::delete('/comment/{comment}/publish', 'CommentController@delete');
         });
+
+        Route::get('/get-root-categ', 'CategController@rootCateg');
+
     });
