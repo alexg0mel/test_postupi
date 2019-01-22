@@ -18,6 +18,17 @@ class CategController extends Controller
         return $this->categoryService->getRootCategWithCountNews();
     }
 
+    public function categs($currid)
+    {
+        return $this->categoryService->getCategWithCountComments($currid);
+    }
+
+    public function news($currid)
+    {
+        return $this->categoryService->getListNewsWithCountComments($currid);
+    }
+
+
     public function __construct(CategoryService $categoryService)
     {
         $this->categoryService = $categoryService;

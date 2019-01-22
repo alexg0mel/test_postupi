@@ -26,5 +26,7 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'],
         });
 
         Route::get('/get-root-categ', 'CategController@rootCateg');
+        Route::get('/get-categs/{currid}', 'CategController@categs');
+        Route::get('/get-news/{currid}', 'CategController@news');
 
     });

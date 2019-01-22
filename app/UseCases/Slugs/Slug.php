@@ -7,9 +7,10 @@ use App\DTO\SlugPath;
 
 class Slug
 {
-    private $slug;
+    private  $slug;
     private  $slugPaths;
     private  $foundPath;
+    private  $id;
 
     /**
      * @var Slug $self
@@ -34,6 +35,7 @@ class Slug
         $this->slug = $slug;
         $this->slugPaths = [];
         $this->foundPath = true;
+        $this->id = 0;
         $this->parseSlug();
     }
 
@@ -52,6 +54,16 @@ class Slug
         return $this->slugPaths;
     }
 
+    public function isNews(): bool
+    {
+        return $this->slugPaths[count($this->slugPaths)-1]->isNews;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
 
     private function parseSlug()
     {
@@ -60,7 +72,10 @@ class Slug
         $isnews = false;
         $slugfound = false;
         $categ = Categ::whereRoot()->where(['slug' => $paths[0]])->first();
-        if (!is_null($categ)) $slugfound = true;
+        if (!is_null($categ)) {
+            $slugfound = true;
+            $this->id = $categ->id;
+        }
         $parentCateg = null;
         $lastPath = '';
         foreach ($paths as $path){
@@ -75,6 +90,7 @@ class Slug
                         if ($child->slug == $path) {
                             $categ = $child;
                             $slugfound = true;
+                            $this->id = $child->id;
                             break;
                         }
                      }
@@ -84,6 +100,7 @@ class Slug
                                 if ($news->slug == $path) {
                                     $isnews = true;
                                     $slugfound = true;
+                                    $this->id = $news->id;
                                     break;
                                 }}
                         }
@@ -94,6 +111,7 @@ class Slug
                             if ($news->slug == $path) {
                                 $isnews = true;
                                 $slugfound = true;
+                                $this->id = $news->id;
                                 break;
                             }}
                         }
